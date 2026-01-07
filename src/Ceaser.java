@@ -6,7 +6,7 @@ public class Ceaser {
     public static String encrypt(String word, int key) {
         StringBuilder encryptedWord = new StringBuilder();
 
-        if (word != "") {
+        if (!word.isEmpty()) {
             for (char c : word.toCharArray()) {
                 if (c != ' '){
 
@@ -27,7 +27,7 @@ public class Ceaser {
     public static String decrypt(String word, int key) {
         StringBuilder decryptedWord = new StringBuilder();
 
-        if (word != "") {
+        if (!word.isEmpty()) {
             for (char c : word.toCharArray()) {
 
                 if(c != ' '){
