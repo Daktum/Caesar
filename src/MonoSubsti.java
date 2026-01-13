@@ -6,92 +6,108 @@ public class MonoSubsti {
 
 
 
+
+
 //        String wordToEncrypt = "DIE SCHWALBE HAT UNTER FOLTER ALLES VERRATEN STOP SOFORTIGER ABBRUCH VON OPERATION KLEOPATRA";
         String wordToDecrypt = "ZQ EQR SJQ BZHSJBZJ, YZJ SQ-MPDZQEYZJRZJ YSPLO ZEJZJ SJQZPZP GHKJZ XS ZPQZRXZJ";
         String key = "Dolly";
-//
-//
-//        String encryptedWord = encrypt(wordToEncrypt, key);
-        String decryptedWord = decrypt(wordToDecrypt, key);
-//
-//        System.out.println("Encrypt:" + encryptedWord);
-        System.out.println("Decrypt:" + decryptedWord);
 
         System.out.println(calcKey(""));
         key = calcKey(key);
 
         System.out.println(key);
 
+//        String encryptedWord = encrypt(wordToEncrypt, key);
+        String decryptedWord = decrypt(wordToDecrypt, key);
+//
+//        System.out.println("Encrypt:" + encryptedWord);
+        System.out.println("Decrypt:" + decryptedWord);
+
+
+
 
     }
 
     public static String encrypt(String word, String key) {
 
-        String encryptedWord = "";
+        StringBuilder encryptedWord = new StringBuilder();
 
         for (char c : word.toCharArray()) {
             if (c >= 65 && c <= 90) {
-                encryptedWord += key.charAt(c - 65);
+                encryptedWord.append(key.charAt(c - 65));
             } else {
-                encryptedWord += c;
+                encryptedWord.append(c);
             }
         }
-        return encryptedWord;
+        return encryptedWord.toString();
     }
 
     public static String decrypt(String word, String key) {
-        String decryptedWord = "";
+        StringBuilder decryptedWord = new StringBuilder();
 
         word = word.toUpperCase();
 
         for (char c : word.toCharArray()) {
             if (c >= 65 && c <= 90) {
-                decryptedWord += (char) (key.indexOf(c) + 65);
+                decryptedWord.append((char) (key.indexOf(c) + 65));
             } else {
-                decryptedWord += c;
+                decryptedWord.append(c);
             }
         }
-        return decryptedWord;
+        return decryptedWord.toString();
     }
 
     public static String calcKey(String key) {
+        if(key.isEmpty()) return key;
+
         key = key.toUpperCase();
 
         char[] charArray = key.toCharArray();
-        String sTemp = "";
+        StringBuilder sTemp = new StringBuilder();
 
         for (char c : charArray) {
             if (c >= 65 && c <= 90) {
-                if (sTemp.indexOf(c) < 0) {
-                    sTemp += c;
+                if (sTemp.toString().indexOf(c) < 0) {
+                    sTemp.append(c);
                 }
             }
         }
+        key = sTemp.toString();
+
+        char end = key.charAt(key.length()-1);
+
+        StringBuilder keyBuilder = new StringBuilder(key);
+        for(int i = 1; i <= 26; i++) {
+
+            if(keyBuilder.toString().indexOf((char) (end + i)) < 0){
+                if(end + i <= 90){
+                    keyBuilder.append((char) (end + i));
+                }else{
+                    if(keyBuilder.toString().indexOf((char) (end + i -26)) < 0){
+                        keyBuilder.append((char) ((end + i) - 26));
+                    }
+                }
+            }
 
 
-
-        key = sTemp;
+        }
+        key = keyBuilder.toString();
 
         return key;
     }
 
     public static void countChars(String word) {
-
-        String s = "";
+        StringBuilder s = new StringBuilder();
         for (char c : word.toCharArray()) {
-            //System.out.println((char) c);
             int i = 0;
 
-            if (s.indexOf(c) < 0) {
+            if (s.toString().indexOf(c) < 0) {
                 for (char b : word.toCharArray()) {
                     if (b == c) {
                         i++;
                     }
                 }
-                s += c;
-                System.out.print(c);
-                System.out.print(" ");
-                System.out.println(i);
+                s.append(c);
             }
         }
     }
