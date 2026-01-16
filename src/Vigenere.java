@@ -1,0 +1,44 @@
+public class Vigenere {
+
+    public static String encrypt (String word, String key) {
+        key = key.toUpperCase();
+        word = word.toUpperCase();
+        StringBuilder encryptedWord = new StringBuilder();
+        int i = 0;
+        for(char c : word.toCharArray()){
+                if(c >= 65 && c <= 90){
+                    int k = (key.charAt(i) - 65) % 26;
+                    //System.out.println(key.charAt(i));
+                    encryptedWord.append((char) ((((c - 65) + k) % 26) + 65));
+                    i = (i + 1) % (key.length());
+                }else {
+                    encryptedWord.append(c);
+                }
+        }
+        return encryptedWord.toString();
+    }
+
+    public static String decrypt (String word, String key) {
+        key = key.toUpperCase();
+        word = word.toUpperCase();
+
+        StringBuilder encryptedWord = new StringBuilder();
+
+        int i = 0;
+
+        for(char c : word.toCharArray()){
+
+            if(c >= 65 && c <= 90){
+                int k =  (key.charAt(i) - 65) % 26;
+                encryptedWord.append((char) ((((c - 65) - k) % 26) + 65));
+                i = (i + 1) % (key.length());
+            }else {
+                encryptedWord.append(c);
+            }
+
+        }
+
+        return encryptedWord.toString();
+    }
+
+}
