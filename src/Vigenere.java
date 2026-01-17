@@ -21,9 +21,7 @@ public class Vigenere {
     public static String decrypt (String word, String key) {
         key = key.toUpperCase();
         word = word.toUpperCase();
-
         StringBuilder encryptedWord = new StringBuilder();
-
         int i = 0;
 
         for(char c : word.toCharArray()){
