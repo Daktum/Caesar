@@ -2,11 +2,9 @@ import java.util.Dictionary;
 import java.util.Hashtable;
 
 public class helper {
-
     // Counts number of Characters in a String
     public static Dictionary<Character, Integer> countChars(String word) {
         StringBuilder s = new StringBuilder();
-
         Dictionary<Character, Integer> charCounts = new Hashtable<>();
 
         for (char c : word.toCharArray()) {
@@ -24,5 +22,4 @@ public class helper {
         }
         return charCounts;
     }
-
 }
