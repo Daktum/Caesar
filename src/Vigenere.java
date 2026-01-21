@@ -5,7 +5,7 @@ public class Vigenere {
         StringBuilder encryptedWord = new StringBuilder();
         int i = 0;
         for(char c : word.toCharArray()){
-            if(c != ' ' && c != '!'){
+            if(helper.checkIfLetter(c)){
                 int k = (key.charAt(i) - 65) % 26;
                 encryptedWord.append((Caeser.decryptChar(c, k)));
                 i = (i + 1) % (key.length());
@@ -22,7 +22,7 @@ public class Vigenere {
         int i = 0;
 
         for(char c : word.toCharArray()){
-            if(c != ' ' && c != '!'){
+            if(helper.checkIfLetter(c)){
                 int k =  (key.charAt(i) - 65) % 26;
                 int calcK = Caeser.decryptChar(c, k);
                 encryptedWord.append((char) calcK);
