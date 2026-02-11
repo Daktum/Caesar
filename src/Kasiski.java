@@ -43,8 +43,6 @@ public class Kasiski {
         int storeCount = 0;
         int storeValue = 0;
 
-
-
         for (int i = 0; i < divi.toArray().length; i++){
             if(temp == divi.get(i)){
                 count++;
@@ -58,12 +56,19 @@ public class Kasiski {
             }
         }
 
-
-        System.out.println(storeValue);
-        System.out.println(storeCount);
-
-
         return storeValue;
+    }
+
+    public static void frequencyAnalysis(String wholeWord, int keyLenght){
+
+        for (int i = 1; i <= keyLenght; i++){
+            StringBuilder word = new StringBuilder();
+            for (int j = 0; j <= wholeWord.length()-i; j += i){
+                word.append(wholeWord.charAt(j));
+            }
+            System.out.println(helper.countChars(word.toString()));
+        }
+
     }
 
 }

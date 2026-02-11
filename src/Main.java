@@ -8,7 +8,9 @@ public class Main {
 
         ArrayList<Integer> sub =  Kasiski.findDuplicates(s1);
 
-        int divi = Kasiski.wordLength(sub);
+        int wordLength = Kasiski.wordLength(sub);
+
+        Kasiski.frequencyAnalysis(s1, wordLength);
 
         //System.out.println(sub);
     }
