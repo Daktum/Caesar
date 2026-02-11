@@ -1,6 +1,5 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Kasiski {
 
@@ -38,12 +37,33 @@ public class Kasiski {
 
         Collections.sort(divi);
 
+        int count = 0;
+        int temp = divi.get(0);
+
+        int storeCount = 0;
+        int storeValue = 0;
 
 
-        System.out.println(divi);
+
+        for (int i = 0; i < divi.toArray().length; i++){
+            if(temp == divi.get(i)){
+                count++;
+            }else{
+                if (storeCount < count){
+                    storeCount = count;
+                    storeValue = divi.get(i-1);
+                }
+                count = 0;
+                temp = divi.get(i);
+            }
+        }
 
 
-        return 0;
+        System.out.println(storeValue);
+        System.out.println(storeCount);
+
+
+        return storeValue;
     }
 
 }

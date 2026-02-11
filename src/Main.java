@@ -10,6 +10,6 @@ public class Main {
 
         int divi = Kasiski.wordLength(sub);
 
-        System.out.println(sub);
+        //System.out.println(sub);
     }
 }
