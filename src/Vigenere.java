@@ -1,3 +1,5 @@
+import java.io.CharArrayWriter;
+
 public class Vigenere {
 
     public static String encrypt (String word, String key) {
