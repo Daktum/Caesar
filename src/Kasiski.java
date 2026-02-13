@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Kasiski {
 
@@ -59,29 +58,21 @@ public class Kasiski {
         return storeValue;
     }
 
-    public static void frequencyAnalysis(String wholeWord, int keyLenght, Hashtable<Character, Float> language){
+    public static void frequencyAnalysis(String wholeWord, int keyLength){
 
-        ArrayList<Hashtable<Character, Float>> out = new ArrayList<>();
 
-        for (int i = 1; i <= keyLenght; i++){
+        for (int i = 0; i <= keyLength; i++) {
             StringBuilder word = new StringBuilder();
-            for (int j = 0; j <= wholeWord.length()-i; j += i){
+            for (int j = 0; j < wholeWord.length()-keyLength; j += i + keyLength) {
                 word.append(wholeWord.charAt(j));
             }
-            //System.out.println();
-            out.add(helper.countChars(word.toString()));
-        }
+            System.out.println(Arrays.toString(helper.countChars(word.toString())));
 
-        for(Hashtable<Character, Float> chars : out){
-
-            chars.forEach( (k, v) -> {
-
-
-
-            });
+            helper.countChars(word.toString());
 
         }
-
+        
+        
     }
 
 }

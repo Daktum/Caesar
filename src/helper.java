@@ -1,11 +1,13 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
 public class helper {
     // Counts number of Characters in a String
-    public static Hashtable<Character, Float> countChars(String word) {
+    public static float[] countChars(String word) {
         StringBuilder s = new StringBuilder();
-        Hashtable<Character, Float> charCounts = new Hashtable<>();
+        float[] charCounts = new float[26];
 
         for (char c : word.toCharArray()) {
             int i = 0;
@@ -19,10 +21,12 @@ public class helper {
                 s.append(c);
                 float rel = ((float) i / word.length())*100;
                 rel = ((float) Math.round(rel * 100) /100);
-                //System.out.println(rel);
-                charCounts.put(c, rel);
+
+                charCounts[c-65] = rel;
+                //System.out.println(Arrays.toString(charCounts));
             }
         }
+
         return charCounts;
     }
 
