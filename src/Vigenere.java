@@ -1,4 +1,4 @@
-import java.io.CharArrayWriter;
+import java.util.ArrayList;
 
 public class Vigenere {
 
@@ -7,10 +7,16 @@ public class Vigenere {
         StringBuilder encryptedWord = new StringBuilder();
         int i = 0;
         for(char c : word.toCharArray()){
-            if(helper.checkIfLetter(c)){
-                int k = (key.charAt(i) - 65) % 26;
-                encryptedWord.append((Caeser.decryptChar(c, k)));
-                i = (i + 1) % (key.length());
+            if(Character.isLetter(c)){
+                int p = c - 'A';
+                int k = key.charAt(i) - 'A';
+
+                int encryptedChar = (p + k) % 26;
+
+                encryptedWord.append((char) (encryptedChar + 'A'));
+
+                i = (i + 1) % key.length();
+
             }else {
                 encryptedWord.append(c);
             }
@@ -19,12 +25,21 @@ public class Vigenere {
     }
 
     public static String decrypt (String word, String key) {
+
+        if(key.isEmpty()){
+            ArrayList<Integer> sub =  Kasiski.findRepeatedSequenceDistances(word);
+
+            int wordLength = Kasiski.keyWordLength(sub);
+
+            key = Kasiski.frequencyAnalysis(word, wordLength);
+        }
+
         key = key.toUpperCase();
         StringBuilder encryptedWord = new StringBuilder();
         int i = 0;
 
         for(char c : word.toCharArray()){
-            if(helper.checkIfLetter(c)){
+            if(Character.isLetter(c)){
                 int k =  (key.charAt(i) - 65) % 26;
                 int calcK = Caeser.decryptChar(c, k);
                 encryptedWord.append((char) calcK);

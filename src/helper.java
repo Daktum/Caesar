@@ -1,8 +1,3 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Dictionary;
-import java.util.Hashtable;
-
 public class helper {
     // Counts number of Characters in a String
     public static double[] countChars(String word) {
@@ -30,7 +25,22 @@ public class helper {
         return charCounts;
     }
 
-    public static boolean checkIfLetter(char c) {
-        return (c >= 65 && c <= 90) || (c >= 97 && c <= 122);
+    //public static boolean checkIfLetter(char c) {
+    //    return (c >= 65 && c <= 90) || (c >= 97 && c <= 122);
+    //}
+
+    public static String makeUsebleString(String word){
+
+        StringBuilder out = new StringBuilder();
+
+        word = word.toUpperCase();
+
+        for ( char c : word.toCharArray()){
+            if (Character.isLetter(c)){
+                out.append(c);
+            }
+        }
+
+        return out.toString();
     }
 }

@@ -11,12 +11,12 @@ public class Kasiski {
         ArrayList<Integer> distances = new ArrayList<>();
 
         for (int seqLength = 3; seqLength <= 5; seqLength++) {
-            for (int seqStart = 0; seqStart < word.length()-seqLength; seqStart++) {
-                String seq = word.substring(seqStart, seqStart+seqLength);
-                for (int secSeqStart = seqStart+seqLength; secSeqStart < word.length()-seqLength; secSeqStart++) {
-                    if ( word.startsWith(seq, secSeqStart) ){
+            for (int seqStart = 0; seqStart < word.length() - seqLength; seqStart++) {
+                String seq = word.substring(seqStart, seqStart + seqLength);
+                for (int secSeqStart = seqStart + seqLength; secSeqStart < word.length() - seqLength; secSeqStart++) {
+                    if (word.startsWith(seq, secSeqStart)) {
                         int dist = secSeqStart - seqStart;
-                        if(!distances.contains(seq)){
+                        if (!distances.contains(seq)) {
                             distances.add(dist);
                         }
                     }
@@ -26,15 +26,12 @@ public class Kasiski {
         return distances;
     }
 
-    public static Integer keyWordLength(ArrayList<Integer> distances){
-
-
-
+    public static Integer keyWordLength(ArrayList<Integer> distances) {
 
         ArrayList<Integer> divi = new ArrayList<>();
 
         for (int i : distances) {
-            for (int j = 2; j <= i; j++) {
+            for (int j = 3; j <= i; j++) {
                 if (i % j == 0) {
                     divi.add(j);
                 }
@@ -59,9 +56,7 @@ public class Kasiski {
                 oldDivi = divi.get(i);
             }
         }
-
         return storeValue;
-
     }
 
     public static String frequencyAnalysis(String wholeWord, int keyLength) {
@@ -70,40 +65,37 @@ public class Kasiski {
 
         for (int i = 0; i < keyLength; i++) {
             StringBuilder word = new StringBuilder();
-            for (int j = 0; j < wholeWord.length()-i; j+=keyLength) {
-                word.append(wholeWord.charAt(j+i));
+            for (int j = 0; j < wholeWord.length() - i; j += keyLength) {
+                word.append(wholeWord.charAt(j + i));
             }
-            //System.out.println(word);
-            double[] wsk =  helper.countChars(word.toString());
+
+            double[] wsk = helper.countChars(word.toString());
             char chr = findCaeserKey(wsk);
             keyWord.append(chr);
         }
 
+        System.out.println("Key:" + keyWord);
         return keyWord.toString();
 
     }
 
-    public static char findCaeserKey(double[] relFraqs){
+    public static char findCaeserKey(double[] relFraqs) {
 
         double old = 500;
         int shift = 0;
-        for (int key = 0; key<26; key++){
+        for (int key = 0; key < 26; key++) {
             double sum = 0;
             for (int i = 0; i < 26; i++) {
-                sum += Math.abs(relFraqs[(i+key)%26] - FRA[i]);
+                sum += Math.abs(relFraqs[(i + key) % 26] - GER[i]);
             }
-            if(sum < old){
+            if (sum < old) {
                 old = sum;
                 shift = key;
             }
 
         }
-        //System.out.println(old + ":" + shift);
 
-        System.out.print((char) (shift+65));
-
-        return  (char) (shift+65);
-
+        return (char) (shift + 65);
     }
 
 }

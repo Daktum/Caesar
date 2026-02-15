@@ -16,7 +16,7 @@ public class Caeser {
         StringBuilder decryptedWord = new StringBuilder();
         if (!word.isEmpty()) {
             for (char c : word.toCharArray()) {
-                if (helper.checkIfLetter(c)) {
+                if (Character.isLetter(c)) {
                     decryptedWord.append(decryptChar(c, key));
                 }
             }
@@ -26,7 +26,7 @@ public class Caeser {
 
     public static char encryptChar(char c, int key) {
         int shiftedCharCode = 32;
-        if (helper.checkIfLetter(c)) {
+        if (Character.isLetter(c)) {
             if ((int) c >= 97) {
                 shiftedCharCode = (char) ((((c - 97) + key) % 26) + 97);
                 if(shiftedCharCode < 97){
