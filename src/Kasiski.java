@@ -74,7 +74,6 @@ public class Kasiski {
             keyWord.append(chr);
         }
 
-        System.out.println("Key:" + keyWord);
         return keyWord.toString();
 
     }
