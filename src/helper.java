@@ -5,9 +5,9 @@ import java.util.Hashtable;
 
 public class helper {
     // Counts number of Characters in a String
-    public static float[] countChars(String word) {
+    public static double[] countChars(String word) {
         StringBuilder s = new StringBuilder();
-        float[] charCounts = new float[26];
+        double[] charCounts = new double[26];
 
         for (char c : word.toCharArray()) {
             int i = 0;
@@ -19,8 +19,8 @@ public class helper {
                     }
                 }
                 s.append(c);
-                float rel = ((float) i / word.length())*100;
-                rel = ((float) Math.round(rel * 100) /100);
+                double rel = ((double) i / word.length())*100;
+                rel = ((double) Math.round(rel * 100) /100);
 
                 charCounts[c-65] = rel;
                 //System.out.println(Arrays.toString(charCounts));
