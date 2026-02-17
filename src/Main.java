@@ -27,9 +27,13 @@ public class Main {
 
         System.out.println("Out Word: " + outWord);
 
-        String skytaleOut = Skytale.encrypt("HABEAMSONNTAGKEINEZEITMUSSLERNENSORRY");
+        String skytaleEncrypt = Skytale.encrypt("HABEAMSONNTAGKEINEZEITMUSSLERNENSORRY");
 
-        System.out.println("SkytaleOut: " + skytaleOut);
+        String skytaleDecrypt = Skytale.decrypt(skytaleEncrypt);
+
+        System.out.println("SkytaleEnrypt: " + skytaleEncrypt);
+
+        System.out.println("SyktaleDercypt: " + skytaleDecrypt);
 
     }
 }
