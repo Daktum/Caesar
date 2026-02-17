@@ -59,20 +59,29 @@ public class Kasiski {
         return storeValue;
     }
 
-    public static String frequencyAnalysis(String[] wordSec) {
+    public static String frequencyAnalysis(String wholeWord, int keyLength) {
+
         StringBuilder keyWord = new StringBuilder();
 
-        for (String s : wordSec){
-            keyWord.append(findCaeserKey(helper.countChars(s)));
+        for (int i = 0; i < keyLength; i++) {
+            StringBuilder word = new StringBuilder();
+            for (int j = 0; j < wholeWord.length() - i; j += keyLength) {
+                word.append(wholeWord.charAt(j + i));
+            }
+
+            double[] wsk = helper.countChars(word.toString());
+            char chr = findCaeserKey(wsk);
+            keyWord.append(chr);
         }
 
         return keyWord.toString();
+
     }
 
     public static char findCaeserKey(double[] relFraqs) {
+
         double old = 500;
         int shift = 0;
-
         for (int key = 0; key < 26; key++) {
             double sum = 0;
             for (int i = 0; i < 26; i++) {
@@ -82,23 +91,10 @@ public class Kasiski {
                 old = sum;
                 shift = key;
             }
+
         }
 
         return (char) (shift + 65);
-    }
-
-    public static String[] splitWord(String word, int keyLength){
-        String[] out = new String[keyLength];
-        String temp = "";
-
-        for (int i = 0; i < keyLength; i++) {
-            for (int j = 0; j < word.length() - i; j += keyLength) {
-                temp += word.charAt(j + i);
-            }
-            out[i] = temp;
-        }
-
-        return out;
     }
 
 }

@@ -1,16 +1,13 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
 
         String s1 = "PWTM!Y!tbADKDgPWPFYWFGUESOTLUPNVYWAPKCSOOJWWASTLSUZUSJMJBBRSTIMGPYSXOJWWASMMZQLCHJQWGYDHKOJWWASTMFPADWIPVKLHONZWPDPWRAAGQPRKNJCNPKGPJJLTHYOWOHPGYJWCUEKUZLGAOWKHOGPESMZMRWPBKVFVZTQNLAGSFSMVWTDPWRAAGQPRKNJCNPTGTKEOMSGVLYVCHKBVKLOFOBLGNCIVXWPLYBZAAEOOWKEWEODZKZOGPWGOMSWMPWTIFFLCTUTYGUOSLZSILYOHEWEODSRVVYHSFAVVHHWGIPTGHYHCWJVLERGJWKPDHGJWTUTQNBXGZEUKTWIAZPPMOGPWGJQWGYDHKNJCNPSOVWTZPFOMNQUQFGOWPYTQNBAIVOSXNSNZNVHMSPAHCXBWVDTFJRWFLASXAGPHYHCWJVLEOANWKUPTXIYGUFFSQLLHZRKZFGPYTXIYGUOWKVAEOEAOBBCVOSXVWKUMSGVLYVCHKBOGYOSTSGGUYSTAAPKYWIPLBBRSRIKULYJUVWKUPFHMDKLMWMMFRLCGUVKQSWAGVVWYNVLZSILYROMKKJSBAZSWMOWKHMILSCKZAIRPWZHMGPYSXLWTNCIVXWPIPNOMZGUSSXIMUIPYUUEGUKICMDEOPFMZMRWPGOMYGOZSXBOKLGWKTWHYLUKVEWZDAGVEKUOSYBWPZDHKTDGUFBJEWNJSSLZSILYYUMFPAPAGVKVLWZKV";
         String s2 = "hoolahoolagirlslikehooligans";
-        String s3 = "Ich hoffe, das ich das ver und dann wieder entschlüsseln kann! Wenn ich nicht das heufig genug verwende geht das wahrscheinlich";
+        String s3 = "Ich hoffe, das ich das ver und dann wieder entschlüsseln kann! Wenn ich nicht das heufig genug verwende geht das wahrscheinlich garnicht oder? Wenn der text nicht lang genug ist, dann funktioniert das nicht richtig! nicht moin nicht moin";
 
-        String s4 = Vigenere.encrypt(s3, "Haus");
-
-        String word = s4;
+        String word = s1;
 
         word = helper.makeUsebleString(word);
 
@@ -22,15 +19,17 @@ public class Main {
 
         System.out.println("Word Lenght: " + wordLength);
 
-        String[] splitWord = Kasiski.splitWord(word, wordLength);
+        String keyWord = Kasiski.frequencyAnalysis(word, wordLength);
 
-        String keyWord = Kasiski.frequencyAnalysis(splitWord);
+        System.out.println("Key word: " + keyWord);
 
-        System.out.println("Key word: " + (keyWord));
-
-        String outWord = Vigenere.decrypt(word, (keyWord));
+        String outWord = Vigenere.decrypt(word, keyWord);
 
         System.out.println("Out Word: " + outWord);
+
+        String skytaleOut = Skytale.encrypt("HABEAMSONNTAGKEINEZEITMUSSLERNENSORRY");
+
+        System.out.println("SkytaleOut: " + skytaleOut);
 
     }
 }
