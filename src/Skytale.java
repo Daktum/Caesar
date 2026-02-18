@@ -1,6 +1,8 @@
+import java.util.Arrays;
+
 public class Skytale {
 
-    public static String encrypt(String word){
+    public static String encryptGartenzaun(String word){
 
         StringBuilder temp1 = new StringBuilder();
         StringBuilder temp2 = new StringBuilder();
@@ -13,31 +15,59 @@ public class Skytale {
             }
         }
 
-        return temp1.toString() + temp2.toString();
+        return temp1.toString() + temp2;
 
     }
 
-    public static String decrypt(String word){
+    public static String decryptGartenZaun(String word){
 
         StringBuilder out = new StringBuilder();
 
-        String temp1 = "";
-        String temp2 = "";
+        int halfLength = word.length() / 2 + word.length() % 2;
 
-        if (word.length() % 2 == 0){
-            temp1 = word.substring(0, word.length()/2);
-            temp2 = word.substring(word.length()/2);
-        }else{
-            temp1 = word.substring(0, word.length()/2);
-            temp2 = word.substring(word.length()/2);
-        }
+        for (int i = 0; i < halfLength; i++) {
 
-        for (int i = 0; i < word.length()/2; i++) {
-            out.append(temp1.charAt(i));
-            out.append(temp2.charAt(i));
         }
 
         return out.toString();
+    }
+
+
+    public static String encrypt(String word, int faces){
+
+        StringBuilder out = new StringBuilder();
+
+        for (int i = 0; i < word.length()/faces; i++) {
+            System.out.println("i: " + i);
+            for (int j = 0; j  < faces; j++) {
+                System.out.println(i+j);
+                out.append(word.charAt(j));
+            }
+        }
+
+        return out.toString();
+    }
+
+    public static String decrypt(String word, int faces){
+
+        StringBuilder out = new StringBuilder();
+        String[] seq = splitWord(word, faces);
+
+        return seq[(seq.length)-1];
+    }
+
+    public static String[] splitWord(String word, int keyLength){
+        String[] out = new String[keyLength];
+        String temp = "";
+
+        for (int i = 0; i < keyLength; i++) {
+            for (int j = 0; j < word.length() - i; j += keyLength) {
+                temp += word.charAt(j + i);
+            }
+            out[i] = temp;
+        }
+        //System.out.println(Arrays.toString(out));
+        return out;
     }
 
 }
