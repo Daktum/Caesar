@@ -27,9 +27,9 @@ public class Main {
 
         System.out.println("Out Word: " + outWord);
 
-        String skytaleEncrypt = Skytale.encrypt("KOMMSTDUHEUTEMITTAGMITZUMBASKETBALLSPIELEN", 6);
+        String skytaleEncrypt = Skytale.encrypt("TARNUNGAUFGEFLOGENSTOPBINENTDECKTSTOPFLUCHTNACHDAENEMARK", 6);
 
-        String skytaleDecrypt = Skytale.decrypt("KUITKSOHTZEPMETUTIMUAMBESTGBALTEMALEDMISLN", 6);
+        String skytaleDecrypt = Skytale.decrypt("SHLNWRIHIÜATAAENNHTERKDEDNTLDTELDEWLEORLIRIERRSEEPERTWCR", 8);
 
         System.out.println("SkytaleEnrypt: " + skytaleEncrypt);
 
