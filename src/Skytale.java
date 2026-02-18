@@ -1,46 +1,15 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Skytale {
 
-    public static String encryptGartenzaun(String word){
 
-        StringBuilder temp1 = new StringBuilder();
-        StringBuilder temp2 = new StringBuilder();
-
-        for (int i = 1; i < word.length()+1; i++) {
-            if(i%2 == 0){
-                temp2.append(word.charAt(i-1));
-            }else {
-                temp1.append(word.charAt(i-1));
-            }
-        }
-
-        return temp1.toString() + temp2;
-
-    }
-
-    public static String decryptGartenZaun(String word){
+    public static String encrypt(String word, int faces) {
 
         StringBuilder out = new StringBuilder();
 
-        int halfLength = word.length() / 2 + word.length() % 2;
-
-        for (int i = 0; i < halfLength; i++) {
-
-        }
-
-        return out.toString();
-    }
-
-
-    public static String encrypt(String word, int faces){
-
-        StringBuilder out = new StringBuilder();
-
-        for (int i = 0; i < word.length()/faces; i++) {
-            System.out.println("i: " + i);
-            for (int j = 0; j  < faces; j++) {
-                System.out.println(i+j);
+        for (int i = 0; i <= faces; i++) {
+            for (int j = i; j < word.length(); j += faces + 1) {
                 out.append(word.charAt(j));
             }
         }
@@ -48,15 +17,15 @@ public class Skytale {
         return out.toString();
     }
 
-    public static String decrypt(String word, int faces){
+    public static String decrypt(String word, int faces) {
 
         StringBuilder out = new StringBuilder();
         String[] seq = splitWord(word, faces);
 
-        return seq[(seq.length)-1];
+        return seq[(seq.length) - 1];
     }
 
-    public static String[] splitWord(String word, int keyLength){
+    public static String[] splitWord(String word, int keyLength) {
         String[] out = new String[keyLength];
         String temp = "";
 
